@@ -59,25 +59,26 @@ def day_trip_generator():
                 
                 if(are_you_happy_with_the_trip == 'Yes' or are_you_happy_with_the_trip == 'yes'):
                     satisfied_answers = True
-                    print("Well enjoy the trip, it was fun planning it for you!")
+                    print("Enjoy the trip, it was fun planning it for you!")
 
                 else:
-                    satisfied_answers = False
-                    reroll_options = input("Sorry to hear that, do you want to reroll those options you didn't like? Yes or No? ")
+                    reroll_everything = input("Sorry to hear that, do you want to reroll everything? Yes or No? ")
 
-                    if(reroll_options == 'No' or reroll_options == 'no'):
+                    if(reroll_everything == 'Yes' or reroll_everything == 'yes'):
                         
-                        satisfied_answers = True
-                        print("I'm sorry I wasn't able to help, please come back if you want me to plan another trip!")
+                        list_of_destinations.remove(random_destination)
+                        list_of_cuisine.remove(random_cuisine)
+                        list_of_transportation.remove(random_transportaion)
+                        list_of_entertainment.remove(random_entertainment)
 
-                    elif(reroll_options == 'Yes' or reroll_options == 'yes'):
-                        
+                    elif(reroll_everything == 'No' or reroll_everything == 'no'):
+
                         satisfied_answers = True
                         rerolled_satisfaction = False
 
                         while rerolled_satisfaction is False:
-                            not_happy_with_the_trip_comment = input(f"What didn't you like about the trip? Please type out the number associated with the choice that you did not like. Don't worry, you'll be able to keep randomizing until you're satisfied: Destination({random_destination}) = 1, Cuisine({random_cuisine}) = 2, Transportation({random_transportaion}) = 3, Entertainment({random_entertainment}) = 4. ")
-                            print('These options will be rerolled.')
+                            not_happy_with_the_trip_comment = input(f"What specifically didn't you like about the trip? Please type in the number associated with the choice that you did not like. Don't worry, you'll be able to keep randomizing until you're satisfied: Destination({random_destination}) = 1, Cuisine({random_cuisine}) = 2, Transportation({random_transportaion}) = 3, Entertainment({random_entertainment}) = 4. ")
+                            print('This option will be rerolled.')
 
                             not_happy_with_the_trip_list = not_happy_with_the_trip_comment.split()
 
