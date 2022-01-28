@@ -1,27 +1,9 @@
 from ast import While
 import random
 
-def list_of_destinations_that_interest_me(destination_list):
-    destination = random.choice(destination_list)
-    return destination
-    
-
-
-def list_of_cuisine_that_interests_me(cuisine_list):
-    cuisine = random.choice(cuisine_list)
-    return cuisine
-
-
-
-def list_of_transportation_that_interests_me(transportation_list):
-    transportation = random.choice(transportation_list)
-    return transportation
-
-
-
-def list_of_entertainment_that_interests_me(entertainment_list):
-    entertainment = random.choice(entertainment_list)
-    return entertainment
+def list_of_things_that_interest_me(list):
+    random_choice = random.choice(list)
+    return random_choice
 
 
 def day_trip_generator():
@@ -42,19 +24,19 @@ def day_trip_generator():
             if (do_i_want_to_plan == 'Yes' or do_i_want_to_plan == 'yes'):
 
                 list_of_destinations = ['New York', 'Kansas City', 'Saint Louis', 'Chicago', 'Louisville', 'Tampa']
-                random_destination = list_of_destinations_that_interest_me(list_of_destinations)
+                random_destination = list_of_things_that_interest_me(list_of_destinations)
                 print(f"Congratulations, it looks like you're going to {random_destination} for your day trip! Have fun!")
 
                 list_of_cuisine = ['Chinese', 'Mexican', 'Etheopian', 'Midwest BBQ', 'Eastcoast BBQ', 'Thai', 'sushi', 'breakfast food']
-                random_cuisine = list_of_cuisine_that_interests_me(list_of_cuisine)
+                random_cuisine = list_of_things_that_interest_me(list_of_cuisine)
                 print(f"Delicious, it looks like you'll be eating {random_cuisine} while you're there! Hopefully you don't have an allergy!")
 
                 list_of_transportation = ['a taxi/Uber/Lyft', 'a train', 'a bike', 'your personally operated vehicle', 'a bus', 'an airplane']
-                random_transportaion = list_of_transportation_that_interests_me(list_of_transportation)
+                random_transportaion = list_of_things_that_interest_me(list_of_transportation)
                 print(f"Interesting choice, it looks like you'll be taking {random_transportaion} to get around. I'm sure you can make it work!")
 
                 list_of_entertainment = ['parooz Topgolf', 'to the movies', 'meander through a museum', 'see a sportsgame', 'play in an arcade', 'go for a hike', 'drive goKarts']
-                random_entertainment = list_of_entertainment_that_interests_me(list_of_entertainment)
+                random_entertainment = list_of_things_that_interest_me(list_of_entertainment)
                 print(f"Oh Fun! I guess you're gonna go {random_entertainment} on your day trip. Enjoy!")
                 print('\n')
 
@@ -76,62 +58,95 @@ def day_trip_generator():
 
                     if(reroll_everything == 'Yes' or reroll_everything == 'yes'):
                         
-                        list_of_destinations.remove(random_destination)
-                        list_of_cuisine.remove(random_cuisine)
-                        list_of_transportation.remove(random_transportaion)
-                        list_of_entertainment.remove(random_entertainment)
+                        if(list_of_destinations == []):
+                            list_of_destinations.append('New York', 'Kansas City', 'Saint Louis', 'Chicago', 'Louisville', 'Tampa')
+
+                        elif(list_of_cuisine == []):
+                            list_of_cuisine.append('Chinese', 'Mexican', 'Etheopian', 'Midwest BBQ', 'Eastcoast BBQ', 'Thai', 'sushi', 'breakfast food')
+
+                        elif(list_of_transportation == []):
+                            list_of_entertainment.append('a taxi/Uber/Lyft', 'a train', 'a bike', 'your personally operated vehicle', 'a bus', 'an airplane')
+
+                        elif(list_of_entertainment == []):
+                            list_of_entertainment.append('parooz Topgolf', 'to the movies', 'meander through a museum', 'see a sportsgame', 'play in an arcade', 'go for a hike', 'drive goKarts')
+
+                        else:
+                            list_of_destinations.remove(random_destination)
+                            list_of_cuisine.remove(random_cuisine)
+                            list_of_transportation.remove(random_transportaion)
+                            list_of_entertainment.remove(random_entertainment)
 
                     elif(reroll_everything == 'No' or reroll_everything == 'no'):
 
                         satisfied_answers = True
                         rerolled_satisfaction = False
+                        empty_lists = False
 
                         while rerolled_satisfaction is False:
-                            not_happy_with_the_trip_comment = input(f"What specifically didn't you like about the trip? Please type in the number associated with the choice that you did not like. Don't worry, you'll be able to keep randomizing until you're satisfied: Destination({random_destination}) = 1, Cuisine({random_cuisine}) = 2, Transportation({random_transportaion}) = 3, Entertainment({random_entertainment}) = 4. ")
+                            value = input(f"What specifically didn't you like about the trip? Please type in the number associated with the choice that you did not like. Don't worry, you'll be able to keep randomizing until you're satisfied: Destination({random_destination}) = 1, Cuisine({random_cuisine}) = 2, Transportation({random_transportaion}) = 3, Entertainment({random_entertainment}) = 4. ")
                             print('This option will be rerolled.')
                             print('\n')
 
-                            not_happy_with_the_trip_list = not_happy_with_the_trip_comment.split()
+                            if(value == '1'):
 
-                            for value in not_happy_with_the_trip_list:
+                                while empty_lists is False:
 
-                                if(value == '1'):
                                     list_of_destinations.remove(random_destination)
-                                    random_destination = list_of_destinations_that_interest_me(list_of_destinations)
-                                        
-                                elif(value == '2'):
+                                    random_destination = list_of_things_that_interest_me(list_of_destinations)
+
+                                    if(list_of_destinations == []):
+                                        empty_lists = True
+                                        list_of_destinations.append('New York', 'Kansas City', 'Saint Louis', 'Chicago', 'Louisville', 'Tampa')
+                                        random_destination = list_of_things_that_interest_me(list_of_destinations) 
+
+                            elif(value == '2'):
+                                    
+                                if(list_of_cuisine == []):
+                                    list_of_cuisine.append('Chinese', 'Mexican', 'Etheopian', 'Midwest BBQ', 'Eastcoast BBQ', 'Thai', 'sushi', 'breakfast food')
+
+                                else:
                                     list_of_cuisine.remove(random_cuisine)
-                                    random_cuisine = list_of_cuisine_that_interests_me(list_of_cuisine)
+                                    random_cuisine = list_of_things_that_interest_me(list_of_cuisine)
 
-                                elif(value == '3'):
+                            elif(value == '3'):
+                                    
+                                if(list_of_transportation == []):
+                                    list_of_entertainment.append('a taxi/Uber/Lyft', 'a train', 'a bike', 'your personally operated vehicle', 'a bus', 'an airplane')
+                                    
+                                else:
                                     list_of_transportation.remove(random_transportaion)
-                                    random_transportaion = list_of_transportation_that_interests_me(list_of_transportation)
+                                    random_transportaion = list_of_things_that_interest_me(list_of_transportation)
 
-                                elif(value == '4'):
+                            elif(value == '4'):
+                                    
+                                if(list_of_entertainment == []):
+                                    list_of_entertainment.append('parooz Topgolf', 'to the movies', 'meander through a museum', 'see a sportsgame', 'play in an arcade', 'go for a hike', 'drive goKarts')
+
+                                else:
                                     list_of_entertainment.remove(random_entertainment)
-                                    random_entertainment = list_of_entertainment_that_interests_me(list_of_entertainment)
+                                    random_entertainment = list_of_things_that_interest_me(list_of_entertainment)
+
+                            print(f"Congratulations, it looks like you're going to {random_destination} for your day trip! Have fun!")                
+                            print(f"Delicious, it looks like you'll be eating {random_cuisine} while you're there! Hopefully you don't have an allergy!")
+                            print(f"Interesting choice, it looks like you'll be taking {random_transportaion} to get around. I'm sure you can make it work!")
+                            print(f"Oh Fun! I guess you're gonna go {random_entertainment} on your day trip. Enjoy!")
+                            print('\n')
+
+
+                            reroll_options = input("Do you want to reroll anymore options you didn't like? Yes or No? ")
+                            print('\n')
+
+                            if(reroll_options == 'No' or reroll_options == 'no'):
+                                rerolled_satisfaction = True
 
                                 print(f"Congratulations, it looks like you're going to {random_destination} for your day trip! Have fun!")                
                                 print(f"Delicious, it looks like you'll be eating {random_cuisine} while you're there! Hopefully you don't have an allergy!")
                                 print(f"Interesting choice, it looks like you'll be taking {random_transportaion} to get around. I'm sure you can make it work!")
                                 print(f"Oh Fun! I guess you're gonna go {random_entertainment} on your day trip. Enjoy!")
-                                print('\n')
+                                print("This is your final itinerary, I hope your new trip lives up to your expectations!")
 
-
-                                reroll_options = input("Do you want to reroll anymore options you didn't like? Yes or No? ")
-                                print('\n')
-
-                                if(reroll_options == 'No' or reroll_options == 'no'):
-                                    rerolled_satisfaction = True
-
-                                    print(f"Congratulations, it looks like you're going to {random_destination} for your day trip! Have fun!")                
-                                    print(f"Delicious, it looks like you'll be eating {random_cuisine} while you're there! Hopefully you don't have an allergy!")
-                                    print(f"Interesting choice, it looks like you'll be taking {random_transportaion} to get around. I'm sure you can make it work!")
-                                    print(f"Oh Fun! I guess you're gonna go {random_entertainment} on your day trip. Enjoy!")
-                                    print("This is your final itinerary, I hope your new trip lives up to your expectations!")
-
-                                else:
-                                    rerolled_satisfaction = False
+                            else:
+                                rerolled_satisfaction = False
 
 
 
