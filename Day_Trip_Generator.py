@@ -28,9 +28,11 @@ def day_trip_generator():
     satisfied_answers = False
 
     do_i_want_to_plan = input("Welcome to the random trip generator, are you ready to let us plan your day trip? Yes or No? ")
+    print('\n')
     
     if(do_i_want_to_plan == 'No' or do_i_want_to_plan == 'no'):
             print('Well, I am sorry to hear that, have fun planning it yourself and come back if you change your mind!')
+            print('\n')
             satisfied_answers == True
 
     else:
@@ -54,15 +56,23 @@ def day_trip_generator():
                 list_of_entertainment = ['parooz Topgolf', 'to the movies', 'meander through a museum', 'see a sportsgame', 'play in an arcade', 'go for a hike', 'drive goKarts']
                 random_entertainment = list_of_entertainment_that_interests_me(list_of_entertainment)
                 print(f"Oh Fun! I guess you're gonna go {random_entertainment} on your day trip. Enjoy!")
+                print('\n')
 
                 are_you_happy_with_the_trip = input('Are you happy with what we have selected for you? Yes or No? ')
+                print('\n')
                 
                 if(are_you_happy_with_the_trip == 'Yes' or are_you_happy_with_the_trip == 'yes'):
                     satisfied_answers = True
-                    print("Enjoy the trip, it was fun planning it for you!")
+
+                    print(f"Congratulations, it looks like you're going to {random_destination} for your day trip! Have fun!")                
+                    print(f"Delicious, it looks like you'll be eating {random_cuisine} while you're there! Hopefully you don't have an allergy!")
+                    print(f"Interesting choice, it looks like you'll be taking {random_transportaion} to get around. I'm sure you can make it work!")
+                    print(f"Oh Fun! I guess you're gonna go {random_entertainment} on your day trip. Enjoy!")
+                    print("This is your itinerary, enjoy the trip! It was fun planning it for you!")
 
                 else:
                     reroll_everything = input("Sorry to hear that, do you want to reroll everything? Yes or No? ")
+                    print('\n')
 
                     if(reroll_everything == 'Yes' or reroll_everything == 'yes'):
                         
@@ -79,6 +89,7 @@ def day_trip_generator():
                         while rerolled_satisfaction is False:
                             not_happy_with_the_trip_comment = input(f"What specifically didn't you like about the trip? Please type in the number associated with the choice that you did not like. Don't worry, you'll be able to keep randomizing until you're satisfied: Destination({random_destination}) = 1, Cuisine({random_cuisine}) = 2, Transportation({random_transportaion}) = 3, Entertainment({random_entertainment}) = 4. ")
                             print('This option will be rerolled.')
+                            print('\n')
 
                             not_happy_with_the_trip_list = not_happy_with_the_trip_comment.split()
 
@@ -104,13 +115,20 @@ def day_trip_generator():
                                 print(f"Delicious, it looks like you'll be eating {random_cuisine} while you're there! Hopefully you don't have an allergy!")
                                 print(f"Interesting choice, it looks like you'll be taking {random_transportaion} to get around. I'm sure you can make it work!")
                                 print(f"Oh Fun! I guess you're gonna go {random_entertainment} on your day trip. Enjoy!")
+                                print('\n')
 
 
                                 reroll_options = input("Do you want to reroll anymore options you didn't like? Yes or No? ")
+                                print('\n')
 
                                 if(reroll_options == 'No' or reroll_options == 'no'):
                                     rerolled_satisfaction = True
-                                    print("Hope your new trip lives up to your expectations!")
+
+                                    print(f"Congratulations, it looks like you're going to {random_destination} for your day trip! Have fun!")                
+                                    print(f"Delicious, it looks like you'll be eating {random_cuisine} while you're there! Hopefully you don't have an allergy!")
+                                    print(f"Interesting choice, it looks like you'll be taking {random_transportaion} to get around. I'm sure you can make it work!")
+                                    print(f"Oh Fun! I guess you're gonna go {random_entertainment} on your day trip. Enjoy!")
+                                    print("This is your final itinerary, I hope your new trip lives up to your expectations!")
 
                                 else:
                                     rerolled_satisfaction = False
