@@ -1,4 +1,3 @@
-from ast import While
 import random
 
 def list_of_things_that_interest_me(list):
@@ -58,29 +57,12 @@ def day_trip_generator():
 
                     if(reroll_everything == 'Yes' or reroll_everything == 'yes'):
                         
-                        if(list_of_destinations == []):
-                            list_of_destinations.append('New York', 'Kansas City', 'Saint Louis', 'Chicago', 'Louisville', 'Tampa')
-
-                        elif(list_of_cuisine == []):
-                            list_of_cuisine.append('Chinese', 'Mexican', 'Etheopian', 'Midwest BBQ', 'Eastcoast BBQ', 'Thai', 'sushi', 'breakfast food')
-
-                        elif(list_of_transportation == []):
-                            list_of_entertainment.append('a taxi/Uber/Lyft', 'a train', 'a bike', 'your personally operated vehicle', 'a bus', 'an airplane')
-
-                        elif(list_of_entertainment == []):
-                            list_of_entertainment.append('parooz Topgolf', 'to the movies', 'meander through a museum', 'see a sportsgame', 'play in an arcade', 'go for a hike', 'drive goKarts')
-
-                        else:
-                            list_of_destinations.remove(random_destination)
-                            list_of_cuisine.remove(random_cuisine)
-                            list_of_transportation.remove(random_transportaion)
-                            list_of_entertainment.remove(random_entertainment)
+                        satisfied_answers = False
 
                     elif(reroll_everything == 'No' or reroll_everything == 'no'):
 
                         satisfied_answers = True
                         rerolled_satisfaction = False
-                        empty_lists = False
 
                         while rerolled_satisfaction is False:
                             value = input(f"What specifically didn't you like about the trip? Please type in the number associated with the choice that you did not like. Don't worry, you'll be able to keep randomizing until you're satisfied: Destination({random_destination}) = 1, Cuisine({random_cuisine}) = 2, Transportation({random_transportaion}) = 3, Entertainment({random_entertainment}) = 4. ")
@@ -89,42 +71,28 @@ def day_trip_generator():
 
                             if(value == '1'):
 
-                                while empty_lists is False:
-
-                                    list_of_destinations.remove(random_destination)
-                                    random_destination = list_of_things_that_interest_me(list_of_destinations)
-
-                                    if(list_of_destinations == []):
-                                        empty_lists = True
-                                        list_of_destinations.append('New York', 'Kansas City', 'Saint Louis', 'Chicago', 'Louisville', 'Tampa')
-                                        random_destination = list_of_things_that_interest_me(list_of_destinations) 
+                                list_of_destinations = ['New York', 'Kansas City', 'Saint Louis', 'Chicago', 'Louisville', 'Tampa']
+                                list_of_destinations.remove(random_destination)
+                                random_destination = list_of_things_that_interest_me(list_of_destinations)
 
                             elif(value == '2'):
                                     
-                                if(list_of_cuisine == []):
-                                    list_of_cuisine.append('Chinese', 'Mexican', 'Etheopian', 'Midwest BBQ', 'Eastcoast BBQ', 'Thai', 'sushi', 'breakfast food')
-
-                                else:
-                                    list_of_cuisine.remove(random_cuisine)
-                                    random_cuisine = list_of_things_that_interest_me(list_of_cuisine)
+                                list_of_cuisine = ['Chinese', 'Mexican', 'Etheopian', 'Midwest BBQ', 'Eastcoast BBQ', 'Thai', 'sushi', 'breakfast food']
+                                list_of_cuisine.remove(random_cuisine)
+                                random_cuisine = list_of_things_that_interest_me(list_of_cuisine)
 
                             elif(value == '3'):
                                     
-                                if(list_of_transportation == []):
-                                    list_of_entertainment.append('a taxi/Uber/Lyft', 'a train', 'a bike', 'your personally operated vehicle', 'a bus', 'an airplane')
-                                    
-                                else:
-                                    list_of_transportation.remove(random_transportaion)
-                                    random_transportaion = list_of_things_that_interest_me(list_of_transportation)
+                                list_of_transportation = ['a taxi/Uber/Lyft', 'a train', 'a bike', 'your personally operated vehicle', 'a bus', 'an airplane']
+                                list_of_transportation.remove(random_transportaion)
+                                random_transportaion = list_of_things_that_interest_me(list_of_transportation)
 
                             elif(value == '4'):
                                     
-                                if(list_of_entertainment == []):
-                                    list_of_entertainment.append('parooz Topgolf', 'to the movies', 'meander through a museum', 'see a sportsgame', 'play in an arcade', 'go for a hike', 'drive goKarts')
-
-                                else:
-                                    list_of_entertainment.remove(random_entertainment)
-                                    random_entertainment = list_of_things_that_interest_me(list_of_entertainment)
+                                list_of_entertainment = ['parooz Topgolf', 'to the movies', 'meander through a museum', 'see a sportsgame', 'play in an arcade', 'go for a hike', 'drive goKarts']
+                                list_of_entertainment.remove(random_entertainment)
+                                random_entertainment = list_of_things_that_interest_me(list_of_entertainment)
+                                
 
                             print(f"Congratulations, it looks like you're going to {random_destination} for your day trip! Have fun!")                
                             print(f"Delicious, it looks like you'll be eating {random_cuisine} while you're there! Hopefully you don't have an allergy!")
